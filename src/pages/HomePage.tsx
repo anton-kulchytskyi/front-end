@@ -1,6 +1,8 @@
 import { Typography, Box, Button } from '@mui/material';
 
 export default function HomePage() {
+  const x = 1;
+
   return (
     <Box sx={{ mt: 10, textAlign: 'center' }}>
       <Typography
