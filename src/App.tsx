@@ -1,8 +1,13 @@
-import HomePage from './pages/Home';
-import './App.css';
+import { CssBaseline, Container } from '@mui/material';
+import HomePage from './pages/HomePage';
 
-function App() {
-  return <HomePage />;
+export default function App() {
+  return (
+    <>
+      <CssBaseline />
+      <Container maxWidth="lg">
+        <HomePage />
+      </Container>
+    </>
+  );
 }
-
-export default App;

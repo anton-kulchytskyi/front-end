@@ -1,11 +1,8 @@
-import { Container, Typography, Button } from '@mui/material';
+import { Typography, Box, Button } from '@mui/material';
 
 export default function HomePage() {
   return (
-    <Container
-      maxWidth="md"
-      sx={{ mt: 12, textAlign: 'center' }}
-    >
+    <Box sx={{ mt: 10, textAlign: 'center' }}>
       <Typography
         variant="h3"
         gutterBottom
@@ -19,7 +16,7 @@ export default function HomePage() {
         component="p"
         sx={{ mb: 3 }}
       >
-        Welcome to the React frontend for our FastAPI backend 🚀
+        React frontend for the FastAPI backend 🚀
       </Typography>
 
       <Button
@@ -28,6 +25,6 @@ export default function HomePage() {
       >
         Get Started
       </Button>
-    </Container>
+    </Box>
   );
 }
