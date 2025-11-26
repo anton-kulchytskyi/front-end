@@ -95,3 +95,29 @@ npm run preview    # Preview production build
 ```
 
 ---
+
+## 🐳 Docker Setup
+
+### Build image
+
+```bash
+docker build -t quiz-frontend .
+```
+
+### Run container
+
+```bash
+docker run -p 5173:80 quiz-frontend
+```
+
+### Using Docker Compose
+
+```bash
+docker-compose up --build
+```
+
+The app will be available at:
+
+```bash
+http://localhost:5173
+```
