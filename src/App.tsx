@@ -1,13 +1,21 @@
-import { CssBaseline, Container } from '@mui/material';
-import HomePage from './pages/HomePage';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+import { BrowserRouter } from 'react-router-dom';
 
-export default function App() {
+import { AppRouter } from '@/router';
+import { theme } from '@/theme/theme';
+
+const App = () => {
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth="lg">
-        <HomePage />
-      </Container>
-    </>
+      <BrowserRouter>
+        <AppRouter />
+      </BrowserRouter>
+    </ThemeProvider>
   );
-}
+};
+
+App.displayName = 'App';
+
+export default App;
