@@ -1,47 +1,51 @@
-import { useMemo } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-type UseProfileConfig<T, Stats, Related> = {
-  id?: string;
-  source: T[];
-  getStats: (id: number) => Stats;
-  getRelated: (id: number) => Related;
-  getId?: (item: T) => number; // optional: by default item.id
-};
+type FetcherFunction<T> = (id: number) => Promise<T | null>;
 
-export function useProfile<T extends { id: number }, Stats, Related>(
-  config: UseProfileConfig<T, Stats, Related>
-) {
-  const {
-    id,
-    source,
-    getStats,
-    getRelated,
-    getId = (item) => item.id,
-  } = config;
-
-  const numericId = Number(id);
-
-  // entity (user/company/anything)
-  const entity = useMemo(
-    () => source.find((item) => getId(item) === numericId),
-    [numericId, source, getId]
-  );
-
-  // stats
-  const stats = useMemo(
-    () => (entity ? getStats(getId(entity)) : null),
-    [entity, getStats, getId]
-  );
-
-  // related objects (activity / quizzes / etc)
-  const related = useMemo(
-    () => (entity ? getRelated(getId(entity)) : []),
-    [entity, getRelated, getId]
-  );
-
-  return {
-    entity,
-    stats,
-    related,
-  };
+interface ProfileState<T> {
+  data: T | null;
+  isLoading: boolean;
+  error: string | null;
 }
+
+export const useProfile = <T>(fetcher: FetcherFunction<T>): ProfileState<T> => {
+  const { id } = useParams<{ id: string }>();
+  const itemId = Number(id);
+  const isInvalidId = !id || isNaN(itemId);
+
+  const [state, setState] = useState<ProfileState<T>>({
+    data: null,
+    isLoading: isInvalidId ? false : true,
+    error: isInvalidId ? 'Invalid ID provided.' : null,
+  });
+
+  useEffect(() => {
+    if (isInvalidId) {
+      return;
+    }
+
+    if (!state.isLoading && state.error === 'Invalid ID provided.') {
+      return;
+    }
+
+    const fetchData = async () => {
+      setState((prev) => ({ ...prev, isLoading: true, error: null }));
+      try {
+        const result = await fetcher(itemId);
+        setState({ data: result, isLoading: false, error: null });
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (e) {
+        setState({
+          data: null,
+          isLoading: false,
+          error: 'Failed to fetch data.',
+        });
+      }
+    };
+
+    fetchData();
+  }, [id, itemId, isInvalidId, fetcher, state.error, state.isLoading]);
+
+  return state;
+};
