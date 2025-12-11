@@ -30,6 +30,7 @@
       "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
       "@hooks/*": ["src/hooks/*"],
+      "@i18n/*": ["src/i18n/*"],
       "@modules/*": ["src/modules/*"],
       "@router/*": ["src/router/*"],
       "@store/*": ["src/store/*"],
