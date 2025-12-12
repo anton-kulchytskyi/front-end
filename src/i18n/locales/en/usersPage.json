@@ -1,0 +1,36 @@
+{
+  "title": "Users",
+  "subtitle": "Manage and view all registered users in the system.",
+  "navigation": {
+    "backToUsers": "Return to users list"
+  },
+  "actions": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "createUser": "Create New User"
+  },
+  "filters": {
+    "searchPlaceholder": "Search by name or email...",
+    "role": "Filter by Role",
+    "status": "Status"
+  },
+  "status": {
+    "all": "All",
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "labels": {
+    "createdAt": "Created",
+    "updatedAt": "Updated",
+    "id": "ID"
+  },
+  "roles": {
+    "admin": "Administrator",
+    "owner": "Owner",
+    "member": "Member",
+    "user": "User"
+  },
+  "profile": {
+    "defaultTitle": "Loading user..."
+  }
+}

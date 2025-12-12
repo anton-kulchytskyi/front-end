@@ -6,12 +6,12 @@ import {
 } from '@/router/breadcrumbs/helpers';
 import { ROUTES } from '@/router/routes';
 
-export const usersListBreadcrumbConfig = createListBreadcrumbs(
-  (t) => t.usersPage.title
+export const usersListBreadcrumbConfig = createListBreadcrumbs((t) =>
+  t('title')
 );
 
 export const userProfileBreadcrumbConfig = createProfileBreadcrumbs<User>(
-  (t) => t.usersPage.title,
+  (t) => t('title'),
   ROUTES.USERS,
-  (user, t) => user?.full_name ?? t.usersPage.profile.defaultTitle
+  (t, user) => user?.full_name ?? t('profile.defaultTitle')
 );

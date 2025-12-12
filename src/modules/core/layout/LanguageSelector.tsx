@@ -1,16 +1,26 @@
-import { Select, MenuItem } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+
+import SelectInput from '@/components/ui/SelectInput';
+import { useLanguage } from '@/hooks/useLanguage';
+import type { Language } from '@/i18n/languages';
 
 const LanguageSelector = () => {
+  const { currentLanguage, changeLanguage, languages } = useLanguage();
+  const { t } = useTranslation('nav');
+
+  const options = Object.values(languages).map((lang) => ({
+    value: lang.code,
+    label: lang.label,
+  }));
+
   return (
-    <Select
-      size="small"
-      value="en"
-      sx={{ minWidth: 80 }}
-      onChange={() => {}}
-    >
-      <MenuItem value="en">EN</MenuItem>
-      <MenuItem value="uk">UA</MenuItem>
-    </Select>
+    <SelectInput
+      label={t('langLabel')}
+      value={currentLanguage}
+      onChange={(value) => changeLanguage(value as Language)}
+      options={options}
+      fullWidth={false}
+    />
   );
 };
 

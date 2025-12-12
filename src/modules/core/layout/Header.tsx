@@ -9,28 +9,28 @@ import {
   Typography,
   IconButton,
 } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 
 import LanguageSelector from './LanguageSelector';
 
 import ButtonLinkComponent from '@/components/ui/ButtonLinkComponent';
 import LinkComponent from '@/components/ui/LinkComponent';
-import { useStrings } from '@/i18n/useStrings';
 import { ROUTES } from '@/router/routes';
 import { useThemeMode } from '@/theme/context/ThemeContext';
 
 const Header = () => {
   const location = useLocation();
   const { mode, toggleColorMode } = useThemeMode();
-  const { nav } = useStrings();
+  const { t } = useTranslation('nav');
 
   const DESKTOP_BREAKPOINT = 'md';
 
   const NAV_ITEMS = [
-    { path: ROUTES.HOME, label: nav.home },
-    { path: ROUTES.ABOUT, label: nav.about },
-    { path: ROUTES.USERS, label: nav.users },
-    { path: ROUTES.COMPANIES, label: nav.companies },
+    { path: ROUTES.HOME, label: t('home') },
+    { path: ROUTES.ABOUT, label: t('about') },
+    { path: ROUTES.USERS, label: t('users') },
+    { path: ROUTES.COMPANIES, label: t('companies') },
   ];
 
   return (
@@ -99,7 +99,7 @@ const Header = () => {
             to="/login"
             variant="contained"
           >
-            {nav.signIn}
+            {t('signIn')}
           </ButtonLinkComponent>
           <Box sx={{ display: { xs: 'flex', [DESKTOP_BREAKPOINT]: 'none' } }}>
             <IconButton

@@ -1,13 +1,14 @@
 import { Button, Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import { useUserProfileViewModel } from '../config/useUserProfileViewModel';
 
 import DetailPageLayout from '@/components/layout/DetailPageLayout';
-import { useStrings } from '@/i18n/useStrings';
 
 const UserProfile = () => {
-  const strings = useStrings();
-  const vm = useUserProfileViewModel(strings);
+  const { t } = useTranslation('usersPage');
+
+  const vm = useUserProfileViewModel(t);
 
   return (
     <DetailPageLayout
@@ -17,7 +18,7 @@ const UserProfile = () => {
       isLoading={vm.isLoading}
       hasData={vm.hasData}
       backToRoute={vm.backToRoute}
-      backToLabel={strings.usersPage.navigation.backToUsers}
+      backToLabel={t('navigation.backToUsers')}
       sidebarContent={vm.sidebar}
       actions={
         <Box sx={{ display: 'flex', gap: 1 }}>
@@ -25,14 +26,14 @@ const UserProfile = () => {
             variant="outlined"
             disabled={!vm.actions.canEdit}
           >
-            {strings.usersPage.actions.edit}
+            {t('actions.edit')}
           </Button>
           <Button
             variant="outlined"
             color="error"
             disabled={!vm.actions.canDelete}
           >
-            {strings.usersPage.actions.delete}
+            {t('actions.delete')}
           </Button>
         </Box>
       }

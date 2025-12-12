@@ -1,10 +1,13 @@
-import { getUserStatusMeta } from '../config/userStatus.config';
+import { useTranslation } from 'react-i18next';
+
+import {
+  getUserMetaData,
+  getUserStatusMeta,
+} from '../config/userStatus.config';
 import type { User } from '../types/user.types';
 
 import ListItemCard from '@/components/list/ListItemCard';
-import { useStrings } from '@/i18n/useStrings';
 import { ROUTES } from '@/router/routes';
-import { formatDate } from '@/utils/formatDate';
 
 type UserCardProps = {
   user: User;
@@ -13,17 +16,13 @@ type UserCardProps = {
 };
 
 const UserCard = ({ user, onEdit, onDelete }: UserCardProps) => {
-  const { usersPage } = useStrings();
+  const { t } = useTranslation('usersPage');
 
   const targetRoute = ROUTES.USER_PROFILE.replace(':id', String(user.id));
 
-  const status = getUserStatusMeta(user.is_active, usersPage);
+  const status = getUserStatusMeta(user.is_active, t);
 
-  const meta = [
-    { label: usersPage.labels.id, value: user.id },
-    { label: usersPage.labels.createdAt, value: formatDate(user.created_at) },
-    { label: usersPage.labels.updatedAt, value: formatDate(user.updated_at) },
-  ];
+  const meta = getUserMetaData(user, t);
 
   return (
     <ListItemCard

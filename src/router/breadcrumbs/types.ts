@@ -1,14 +1,14 @@
-import type { TranslationSchema } from '@/i18n';
+import type { AnyTFunction } from '@/i18n/types';
 
 export type Crumb = {
   label: string;
   to?: string;
 };
 
-export type BreadcrumbLabelGetter = (t: TranslationSchema) => string;
+export type BreadcrumbLabelGetter = (t: AnyTFunction) => string;
 export type BreadcrumbEntityLabelGetter<T> = (
-  entity: T | null,
-  t: TranslationSchema
+  t: AnyTFunction,
+  entity?: T | null
 ) => string;
 
 export type ListBreadcrumbConfig = {

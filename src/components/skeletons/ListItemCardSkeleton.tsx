@@ -1,7 +1,6 @@
 import { Box, Grid, Skeleton } from '@mui/material';
-import React from 'react';
 
-const ListItemCardSkeleton: React.FC = () => (
+const ListItemCardSkeleton = () => (
   <Box
     sx={{
       p: 2,
@@ -52,7 +51,11 @@ const ListItemCardSkeleton: React.FC = () => (
   </Box>
 );
 
-export const ListSkeleton: React.FC<{ count?: number }> = ({ count = 6 }) => {
+type ListSkeletonProps = {
+  count?: number;
+};
+
+export const ListSkeleton = ({ count = 6 }: ListSkeletonProps) => {
   return (
     <Grid
       container

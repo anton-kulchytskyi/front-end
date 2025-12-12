@@ -1,24 +1,25 @@
 import { Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import { fetchAllUsers } from '../api/user.api';
 import UserCard from '../components/UserCard';
 import { usersListBreadcrumbConfig } from '../config/users.breadcrumbs';
 import { usersListConfig } from '../config/usersList.config';
-import { UserStatus } from '../constants/userStatus';
+import { UserStatus, userStatusOptions } from '../constants/userStatus';
 
 import PageCreateButton from '@/components/common/PageCreateButton';
 import ListPageLayout from '@/components/layout/ListPageLayout';
-import ListFiltersBlock from '@/components/list/ListFilterBlock';
+import ListFiltersBlock, {
+  type ListFilterOption,
+} from '@/components/list/ListFilterBlock';
 import { ListSkeleton } from '@/components/skeletons/ListItemCardSkeleton';
 import PageHeader from '@/components/ui/PageHeader';
 import { useList } from '@/hooks/useList';
-import { useStrings } from '@/i18n/useStrings';
 import { useBreadcrumbs } from '@/router/breadcrumbs/useBreadcrumbs';
 import { ROUTES } from '@/router/routes';
-import { createEnumOptions } from '@/utils/createListConfig';
 
 const UsersList = () => {
-  const { usersPage } = useStrings();
+  const { t } = useTranslation('usersPage');
 
   const {
     items,
@@ -32,8 +33,12 @@ const UsersList = () => {
     isLoading,
   } = useList(fetchAllUsers, usersListConfig);
 
-  const statusOptions = createEnumOptions(UserStatus, usersPage.status);
-  const breadcrumbs = useBreadcrumbs(usersListBreadcrumbConfig);
+  const breadcrumbs = useBreadcrumbs(usersListBreadcrumbConfig, t);
+
+  const statusOptions: ListFilterOption[] = userStatusOptions.map((opt) => ({
+    value: opt.value,
+    label: t(opt.label),
+  }));
 
   const resetFilters = () => {
     setSearch('');
@@ -44,13 +49,13 @@ const UsersList = () => {
   return (
     <Box>
       <PageHeader
-        title={usersPage.title}
-        subtitle={usersPage.subtitle}
+        title={t('title')}
+        subtitle={t('subtitle')}
         breadcrumbs={breadcrumbs}
         actions={
           <PageCreateButton
             to={ROUTES.USERS} // TO DO: add real route for user creation
-            label={usersPage.actions.createUser}
+            label={t('actions.createUser')}
           />
         }
       />
@@ -59,11 +64,11 @@ const UsersList = () => {
         search={{
           value: search,
           onChange: setSearch,
-          placeholder: usersPage.filters.searchPlaceholder,
+          placeholder: t('filters.searchPlaceholder'),
         }}
         filters={[
           {
-            label: usersPage.filters.status,
+            label: t('filters.status'),
             value: filters.status || 'all',
             onChange: (val) => setFilter('status', val as UserStatus),
             options: statusOptions,
@@ -83,6 +88,7 @@ const UsersList = () => {
           resetFilters={resetFilters}
           renderItem={(user) => (
             <UserCard
+              key={user.id}
               user={user}
               onEdit={(id) => console.log('Edit user:', id)}
               onDelete={(id) => console.log('Delete user:', id)}

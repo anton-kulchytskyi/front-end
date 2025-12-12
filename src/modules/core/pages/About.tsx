@@ -1,11 +1,11 @@
 import { Box, Typography, Container } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import ButtonLinkComponent from '@/components/ui/ButtonLinkComponent';
-import { useStrings } from '@/i18n/useStrings';
 import { ROUTES } from '@/router/routes';
 
 const About = () => {
-  const { aboutPage, nav } = useStrings();
+  const { t } = useTranslation('aboutPage');
 
   return (
     <Container
@@ -20,29 +20,26 @@ const About = () => {
           gutterBottom
           color="primary.main"
         >
-          {aboutPage.title}
+          {t('title')}
         </Typography>
         <Typography
           variant="h6"
           color="text.secondary"
           sx={{ mb: 3 }}
         >
-          {aboutPage.subtitle}
+          {t('subtitle')}
         </Typography>
       </Box>
       <Box sx={{ mb: 4 }}>
-        <Typography
-          variant="body1"
-          gutterBottom
-        >
-          {aboutPage.paragraph1}
-        </Typography>
-        <Typography
-          variant="body1"
-          gutterBottom
-        >
-          {aboutPage.paragraph2}
-        </Typography>
+        {[t('paragraph1'), t('paragraph2')].map((p, i) => (
+          <Typography
+            key={i}
+            variant="body1"
+            gutterBottom
+          >
+            {p}
+          </Typography>
+        ))}
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4, gap: 2 }}>
         <ButtonLinkComponent
@@ -51,7 +48,7 @@ const About = () => {
           size="large"
           to={ROUTES.HOME}
         >
-          {aboutPage.backToHome}
+          {t('backToHome')}
         </ButtonLinkComponent>
         <ButtonLinkComponent
           variant="outlined"
@@ -59,7 +56,7 @@ const About = () => {
           size="large"
           to={ROUTES.COMPANIES}
         >
-          {nav.companies}
+          {t('cta')}
         </ButtonLinkComponent>
       </Box>
     </Container>

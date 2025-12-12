@@ -3,16 +3,18 @@ import CompanySidebarMeta from '../components/CompanySidebarMeta';
 import type { Company } from '../types/company.types';
 
 import { companyProfileBreadcrumbConfig } from './companies.breadcrumbs';
-import { getCompanyVisibilityMeta } from './companyVisibility.config';
+import {
+  getCompanySidebarMetaData,
+  getCompanyVisibilityMeta,
+} from './companyVisibility.config';
 
 import { ProfileSkeleton } from '@/components/skeletons/ProfileSkeleton';
 import { useProfile } from '@/hooks/useProfile';
-import type { TranslationSchema } from '@/i18n';
+import type { AnyTFunction } from '@/i18n/types';
 import { useBreadcrumbs } from '@/router/breadcrumbs/useBreadcrumbs';
 import { ROUTES } from '@/router/routes';
-import { formatDate } from '@/utils/formatDate';
 
-export const useCompanyProfileViewModel = (strings: TranslationSchema) => {
+export const useCompanyProfileViewModel = (t: AnyTFunction) => {
   const {
     data: company,
     isLoading,
@@ -23,19 +25,16 @@ export const useCompanyProfileViewModel = (strings: TranslationSchema) => {
 
   const breadcrumbs = useBreadcrumbs<Company>(
     companyProfileBreadcrumbConfig,
+    t,
     company
   );
 
-  const title = hasData
-    ? company.name
-    : strings.companiesPage.profile.defaultTitle;
+  const title = hasData ? company.name : t('profile.defaultTitle');
 
   const subtitle =
     hasData && company
-      ? `${strings.companiesPage.labels.id}: ${company.id} | ${
-          company.is_visible
-            ? strings.companiesPage.status.visible
-            : strings.companiesPage.status.hidden
+      ? `${t('labels.id')}: ${company.id} | ${
+          company.is_visible ? t('status.visible') : t('status.hidden')
         }`
       : undefined;
 
@@ -47,31 +46,15 @@ export const useCompanyProfileViewModel = (strings: TranslationSchema) => {
   } else if (hasData && company) {
     content = (
       <>
-        <strong>{strings.companiesPage.title}:</strong> {company.description}
+        <strong>{t('title')}:</strong> {company.description}
       </>
     );
 
     sidebar = (
       <CompanySidebarMeta
         company={company}
-        meta={[
-          {
-            label: strings.companiesPage.labels.owner,
-            value: company.owner_id,
-          },
-          {
-            label: strings.companiesPage.labels.createdAt,
-            value: formatDate(company.created_at) ?? '—',
-          },
-          {
-            label: strings.companiesPage.labels.updatedAt,
-            value: formatDate(company.updated_at) ?? '—',
-          },
-        ]}
-        status={getCompanyVisibilityMeta(
-          company.is_visible,
-          strings.companiesPage
-        )}
+        meta={getCompanySidebarMetaData(company, t)}
+        status={getCompanyVisibilityMeta(company.is_visible, t)}
       />
     );
   }
@@ -85,9 +68,7 @@ export const useCompanyProfileViewModel = (strings: TranslationSchema) => {
     breadcrumbs,
     sidebar,
     content,
-
     backToRoute: ROUTES.COMPANIES,
-
     actions: {
       canEdit: hasData,
       canDelete: hasData,

@@ -6,7 +6,6 @@ import { createEnumFilter, createListConfig } from '@/utils/createListConfig';
 export const companiesListConfig = createListConfig<Company, CompanyVisibility>(
   {
     searchKeys: ['name'],
-
     filters: {
       visibility: createEnumFilter<Company, CompanyVisibility>({
         mapping: {

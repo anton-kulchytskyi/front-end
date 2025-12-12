@@ -1,13 +1,13 @@
 import { Button, Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import { useCompanyProfileViewModel } from '../config/useCompanyProfileViewModel';
 
 import DetailPageLayout from '@/components/layout/DetailPageLayout';
-import { useStrings } from '@/i18n/useStrings';
 
 const CompanyProfile = () => {
-  const strings = useStrings();
-  const vm = useCompanyProfileViewModel(strings);
+  const { t } = useTranslation('companiesPage');
+  const vm = useCompanyProfileViewModel(t);
 
   return (
     <DetailPageLayout
@@ -17,7 +17,7 @@ const CompanyProfile = () => {
       isLoading={vm.isLoading}
       hasData={vm.hasData}
       backToRoute={vm.backToRoute}
-      backToLabel={strings.companiesPage.navigation.backToCompanies}
+      backToLabel={t('navigation.backToCompanies')}
       sidebarContent={vm.sidebar}
       actions={
         <Box sx={{ display: 'flex', gap: 1 }}>
@@ -25,14 +25,14 @@ const CompanyProfile = () => {
             variant="outlined"
             disabled={!vm.actions.canEdit}
           >
-            {strings.companiesPage.actions.edit}
+            {t('actions.edit')}
           </Button>
           <Button
             variant="outlined"
             color="error"
             disabled={!vm.actions.canDelete}
           >
-            {strings.companiesPage.actions.delete}
+            {t('actions.delete')}
           </Button>
         </Box>
       }

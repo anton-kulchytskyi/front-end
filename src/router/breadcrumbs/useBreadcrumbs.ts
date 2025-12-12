@@ -1,26 +1,29 @@
+import { useTranslation } from 'react-i18next';
+
 import type { BreadcrumbConfig, Crumb } from './types';
 
-import { useStrings } from '@/i18n/useStrings';
+import type { AnyTFunction } from '@/i18n/types';
 import { ROUTES } from '@/router/routes';
 
 export function useBreadcrumbs<T = unknown>(
   config: BreadcrumbConfig<T>,
-  entity: T | null = null
+  t: AnyTFunction,
+  entity?: T | null
 ): Crumb[] {
-  const t = useStrings();
+  const { t: tNav } = useTranslation('nav');
 
   switch (config.type) {
     case 'list':
       return [
-        { label: t.nav.home, to: ROUTES.HOME },
+        { label: tNav('home'), to: ROUTES.HOME },
         { label: config.label(t) },
       ];
 
     case 'profile':
       return [
-        { label: t.nav.home, to: ROUTES.HOME },
+        { label: tNav('home'), to: ROUTES.HOME },
         { label: config.listLabel(t), to: config.listTo },
-        { label: config.entityLabel(entity, t) },
+        { label: config.entityLabel(t, entity) },
       ];
   }
 }
