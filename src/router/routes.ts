@@ -46,4 +46,10 @@ export const ROUTES = {
       { label: t('companies'), to: '/companies' },
     ],
   },
+  STATE_DEMO: {
+    path: '/state-demo',
+    translationKey: 'stateDemo',
+    showInNav: true,
+    breadcrumbs: (t) => [homeCrumb, { label: t('stateDemo') }],
+  },
 } as const satisfies Record<string, RouteConfig>;
