@@ -18,7 +18,7 @@ type UserCardProps = {
 const UserCard = ({ user, onEdit, onDelete }: UserCardProps) => {
   const { t } = useTranslation('usersPage');
 
-  const targetRoute = ROUTES.USER_PROFILE.replace(':id', String(user.id));
+  const targetRoute = ROUTES.USER_PROFILE.path.replace(':id', String(user.id));
 
   const status = getUserStatusMeta(user.is_active, t);
 

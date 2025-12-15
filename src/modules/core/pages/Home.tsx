@@ -35,7 +35,7 @@ const Home = () => {
           variant="contained"
           color="primary"
           size="large"
-          to={ROUTES.ABOUT}
+          to={ROUTES.ABOUT.path}
         >
           {t('learnMore')}
         </ButtonLinkComponent>
@@ -43,7 +43,7 @@ const Home = () => {
           variant="outlined"
           color="secondary"
           size="large"
-          to={ROUTES.USERS}
+          to={ROUTES.USERS.path}
         >
           {t('cta')}
         </ButtonLinkComponent>

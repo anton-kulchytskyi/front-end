@@ -13,6 +13,25 @@ export const linkOverrides: Components = {
     },
 
     variants: [
+      // --- BREADCRUMB LINK ---
+      {
+        props: { variant: 'breadcrumb' },
+        style: {
+          padding: 0,
+          fontWeight: 400,
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '4px',
+          color: 'inherit',
+          textDecoration: 'none',
+
+          '&:hover': {
+            textDecoration: 'underline',
+            backgroundColor: 'transparent',
+          },
+        },
+      },
+
       // NAVIGATION LINK
       {
         props: { variant: 'nav' },

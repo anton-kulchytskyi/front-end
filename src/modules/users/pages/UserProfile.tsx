@@ -4,20 +4,26 @@ import { useTranslation } from 'react-i18next';
 import { useUserProfileViewModel } from '../config/useUserProfileViewModel';
 
 import DetailPageLayout from '@/components/layout/DetailPageLayout';
+import { getRouteBreadcrumbs } from '@/router/breadcrumbs/helpers';
 
 const UserProfile = () => {
   const { t } = useTranslation('usersPage');
+  const { t: tNav } = useTranslation('nav');
 
   const vm = useUserProfileViewModel(t);
+  const breadcrumbs = [
+    ...getRouteBreadcrumbs('USER_PROFILE', tNav),
+    { label: vm.title },
+  ];
 
   return (
     <DetailPageLayout
       title={vm.title}
       subtitle={vm.subtitle}
-      breadcrumbs={vm.breadcrumbs}
+      breadcrumbs={breadcrumbs}
       isLoading={vm.isLoading}
       hasData={vm.hasData}
-      backToRoute={vm.backToRoute}
+      backToRoute={vm.backToRoute.path}
       backToLabel={t('navigation.backToUsers')}
       sidebarContent={vm.sidebar}
       actions={

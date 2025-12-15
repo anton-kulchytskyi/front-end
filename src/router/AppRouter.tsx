@@ -15,7 +15,7 @@ const AppRouter = () => {
   return (
     <Routes>
       <Route
-        path={ROUTES.HOME}
+        path={ROUTES.HOME.path}
         element={<MainLayout />}
       >
         <Route
@@ -24,25 +24,25 @@ const AppRouter = () => {
         />
 
         <Route
-          path={ROUTES.ABOUT}
+          path={ROUTES.ABOUT.path}
           element={<About />}
         />
 
         <Route
-          path={ROUTES.USERS}
+          path={ROUTES.USERS.path}
           element={<UsersList />}
         />
         <Route
-          path={ROUTES.USER_PROFILE}
+          path={ROUTES.USER_PROFILE.path}
           element={<UserProfile />}
         />
 
         <Route
-          path={ROUTES.COMPANIES}
+          path={ROUTES.COMPANIES.path}
           element={<CompaniesList />}
         />
         <Route
-          path={ROUTES.COMPANY_PROFILE}
+          path={ROUTES.COMPANY_PROFILE.path}
           element={<CompanyProfile />}
         />
 

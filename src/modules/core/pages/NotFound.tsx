@@ -16,7 +16,7 @@ const NotFound = () => {
       description={t('notFound.description')}
       action={{
         label: t('notFound.action'),
-        onClick: () => navigate(ROUTES.HOME),
+        onClick: () => navigate(ROUTES.HOME.path),
       }}
     />
   );

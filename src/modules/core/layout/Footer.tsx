@@ -27,7 +27,7 @@ const Footer = () => {
           © {new Date().getFullYear()} Meduzzen — {t('copyright')}.
           {t('separator')}
           <LinkComponent
-            to={ROUTES.ABOUT}
+            to={ROUTES.ABOUT.path}
             sx={{ color: 'primary.main', textDecoration: 'none' }}
           >
             {t('aboutLink')}

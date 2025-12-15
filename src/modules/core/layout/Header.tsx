@@ -16,6 +16,7 @@ import LanguageSelector from './LanguageSelector';
 
 import ButtonLinkComponent from '@/components/ui/ButtonLinkComponent';
 import LinkComponent from '@/components/ui/LinkComponent';
+import { getNavigationItems } from '@/router/breadcrumbs/helpers';
 import { ROUTES } from '@/router/routes';
 import { useThemeMode } from '@/theme/context/ThemeContext';
 
@@ -26,12 +27,7 @@ const Header = () => {
 
   const DESKTOP_BREAKPOINT = 'md';
 
-  const NAV_ITEMS = [
-    { path: ROUTES.HOME, label: t('home') },
-    { path: ROUTES.ABOUT, label: t('about') },
-    { path: ROUTES.USERS, label: t('users') },
-    { path: ROUTES.COMPANIES, label: t('companies') },
-  ];
+  const NAV_ITEMS = getNavigationItems();
 
   return (
     <AppBar
@@ -48,7 +44,7 @@ const Header = () => {
           <Typography
             variant="h6"
             component={LinkComponent}
-            to={ROUTES.HOME}
+            to={ROUTES.HOME.path}
             sx={{
               flexGrow: 1,
               fontWeight: 700,
@@ -77,7 +73,7 @@ const Header = () => {
                   to={item.path}
                   variant={isActive ? 'navActive' : 'nav'}
                 >
-                  {item.label}
+                  {t(item.translationKey)}
                 </LinkComponent>
               );
             })}

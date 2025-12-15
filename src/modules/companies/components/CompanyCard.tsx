@@ -18,7 +18,10 @@ type CompanyCardProps = {
 const CompanyCard = ({ company, onEdit, onDelete }: CompanyCardProps) => {
   const { t } = useTranslation('companiesPage');
 
-  const targetRoute = ROUTES.COMPANY_PROFILE.replace(':id', String(company.id));
+  const targetRoute = ROUTES.COMPANY_PROFILE.path.replace(
+    ':id',
+    String(company.id)
+  );
 
   const status = getCompanyVisibilityMeta(company.is_visible, t);
 

@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import { fetchAllCompanies } from '../api/company.api';
 import CompanyCard from '../components/CompanyCard';
-import { companiesListBreadcrumbConfig } from '../config/companies.breadcrumbs';
 import { companiesListConfig } from '../config/companiesList.config';
 import {
   CompanyVisibility,
@@ -18,11 +17,12 @@ import { ListSkeleton } from '@/components/skeletons/ListItemCardSkeleton';
 import ButtonLinkComponent from '@/components/ui/ButtonLinkComponent';
 import PageHeader from '@/components/ui/PageHeader';
 import { useList } from '@/hooks/useList';
-import { useBreadcrumbs } from '@/router/breadcrumbs/useBreadcrumbs';
+import { getRouteBreadcrumbs } from '@/router/breadcrumbs/helpers';
 import { ROUTES } from '@/router/routes';
 
 const CompaniesList = () => {
   const { t } = useTranslation('companiesPage');
+  const { t: tNav } = useTranslation('nav');
 
   const {
     items,
@@ -36,7 +36,7 @@ const CompaniesList = () => {
     totalPages,
   } = useList(fetchAllCompanies, companiesListConfig);
 
-  const breadcrumbs = useBreadcrumbs(companiesListBreadcrumbConfig, t);
+  const breadcrumbs = getRouteBreadcrumbs('COMPANIES', tNav);
 
   const visibilityOptions: ListFilterOption[] = CompanyVisibilityOptions.map(
     (opt) => ({
@@ -59,7 +59,7 @@ const CompaniesList = () => {
         breadcrumbs={breadcrumbs}
         actions={
           <ButtonLinkComponent
-            to={ROUTES.COMPANIES} // TO DO: add real route for company creation
+            to={ROUTES.COMPANIES.path} // TO DO: add real route for company creation
             variant="contained"
           >
             {t('actions.createCompany')}

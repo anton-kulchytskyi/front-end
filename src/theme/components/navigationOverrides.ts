@@ -23,6 +23,15 @@ export const navigationOverrides: Components = {
       root: {
         marginBottom: '16px',
       },
+      li: {
+        display: 'flex',
+        alignItems: 'center',
+      },
+
+      separator: {
+        display: 'flex',
+        alignItems: 'center',
+      },
     },
   },
 };

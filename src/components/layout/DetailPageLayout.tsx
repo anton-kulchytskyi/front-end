@@ -2,12 +2,13 @@ import { Box, Typography, Grid, type SxProps } from '@mui/material';
 import React from 'react';
 
 import NoResultsFound from '@/components/list/NoResultsFound';
-import PageHeader, { type BreadcrumbItem } from '@/components/ui/PageHeader';
+import PageHeader from '@/components/ui/PageHeader';
+import type { Crumb } from '@/router/breadcrumbs/types';
 
-interface DetailPageLayoutProps {
+type DetailPageLayoutProps = {
   title: string;
   subtitle?: string;
-  breadcrumbs: BreadcrumbItem[];
+  breadcrumbs: Crumb[];
   children: React.ReactNode;
   sidebarContent?: React.ReactNode;
   actions?: React.ReactNode;
@@ -16,9 +17,9 @@ interface DetailPageLayoutProps {
   backToRoute: string;
   backToLabel: string;
   isLoading: boolean;
-}
+};
 
-const DetailPageLayout: React.FC<DetailPageLayoutProps> = ({
+const DetailPageLayout = ({
   title,
   subtitle,
   breadcrumbs,
@@ -30,7 +31,7 @@ const DetailPageLayout: React.FC<DetailPageLayoutProps> = ({
   backToLabel,
   isLoading,
   sx = {},
-}) => {
+}: DetailPageLayoutProps) => {
   const mainContentSize = sidebarContent ? 8 : 12;
   const sidebarSize = 4;
 

@@ -4,19 +4,26 @@ import { useTranslation } from 'react-i18next';
 import { useCompanyProfileViewModel } from '../config/useCompanyProfileViewModel';
 
 import DetailPageLayout from '@/components/layout/DetailPageLayout';
+import { getRouteBreadcrumbs } from '@/router/breadcrumbs/helpers';
 
 const CompanyProfile = () => {
   const { t } = useTranslation('companiesPage');
+  const { t: tNav } = useTranslation('nav');
   const vm = useCompanyProfileViewModel(t);
+
+  const breadcrumbs = [
+    ...getRouteBreadcrumbs('COMPANY_PROFILE', tNav),
+    { label: vm.title },
+  ];
 
   return (
     <DetailPageLayout
       title={vm.title}
       subtitle={vm.subtitle}
-      breadcrumbs={vm.breadcrumbs}
+      breadcrumbs={breadcrumbs}
       isLoading={vm.isLoading}
       hasData={vm.hasData}
-      backToRoute={vm.backToRoute}
+      backToRoute={vm.backToRoute.path}
       backToLabel={t('navigation.backToCompanies')}
       sidebarContent={vm.sidebar}
       actions={

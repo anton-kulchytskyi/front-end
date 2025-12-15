@@ -1,8 +1,49 @@
+import { homeCrumb } from './breadcrumbs/homeCrumb';
+import type { RouteConfig } from './breadcrumbs/types';
+
 export const ROUTES = {
-  HOME: '/',
-  ABOUT: '/about',
-  USERS: '/users',
-  USER_PROFILE: '/users/:id',
-  COMPANIES: '/companies',
-  COMPANY_PROFILE: '/companies/:id',
-} as const;
+  HOME: {
+    path: '/',
+    translationKey: 'home',
+    showInNav: true,
+    breadcrumbs: () => [],
+  },
+
+  ABOUT: {
+    path: '/about',
+    translationKey: 'about',
+    showInNav: true,
+    breadcrumbs: (t) => [homeCrumb, { label: t('about') }],
+  },
+
+  USERS: {
+    path: '/users',
+    translationKey: 'users',
+    showInNav: true,
+    breadcrumbs: (t) => [homeCrumb, { label: t('users') }],
+  },
+
+  USER_PROFILE: {
+    path: '/users/:id',
+    translationKey: 'userProfile',
+    showInNav: false,
+    breadcrumbs: (t) => [homeCrumb, { label: t('users'), to: '/users' }],
+  },
+
+  COMPANIES: {
+    path: '/companies',
+    translationKey: 'companies',
+    showInNav: true,
+    breadcrumbs: (t) => [homeCrumb, { label: t('companies') }],
+  },
+
+  COMPANY_PROFILE: {
+    path: '/companies/:id',
+    translationKey: 'companyProfile',
+    showInNav: false,
+    breadcrumbs: (t) => [
+      homeCrumb,
+      { label: t('companies'), to: '/companies' },
+    ],
+  },
+} as const satisfies Record<string, RouteConfig>;

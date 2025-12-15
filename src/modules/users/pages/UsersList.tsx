@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import { fetchAllUsers } from '../api/user.api';
 import UserCard from '../components/UserCard';
-import { usersListBreadcrumbConfig } from '../config/users.breadcrumbs';
 import { usersListConfig } from '../config/usersList.config';
 import { UserStatus, userStatusOptions } from '../constants/userStatus';
 
@@ -15,11 +14,12 @@ import ListFiltersBlock, {
 import { ListSkeleton } from '@/components/skeletons/ListItemCardSkeleton';
 import PageHeader from '@/components/ui/PageHeader';
 import { useList } from '@/hooks/useList';
-import { useBreadcrumbs } from '@/router/breadcrumbs/useBreadcrumbs';
+import { getRouteBreadcrumbs } from '@/router/breadcrumbs/helpers';
 import { ROUTES } from '@/router/routes';
 
 const UsersList = () => {
   const { t } = useTranslation('usersPage');
+  const { t: tNav } = useTranslation('nav');
 
   const {
     items,
@@ -33,7 +33,7 @@ const UsersList = () => {
     isLoading,
   } = useList(fetchAllUsers, usersListConfig);
 
-  const breadcrumbs = useBreadcrumbs(usersListBreadcrumbConfig, t);
+  const breadcrumbs = getRouteBreadcrumbs('USERS', tNav);
 
   const statusOptions: ListFilterOption[] = userStatusOptions.map((opt) => ({
     value: opt.value,
@@ -54,7 +54,7 @@ const UsersList = () => {
         breadcrumbs={breadcrumbs}
         actions={
           <PageCreateButton
-            to={ROUTES.USERS} // TO DO: add real route for user creation
+            to={ROUTES.USERS.path} // TO DO: add real route for user creation
             label={t('actions.createUser')}
           />
         }
