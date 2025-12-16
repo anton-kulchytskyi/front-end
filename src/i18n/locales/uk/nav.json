@@ -3,6 +3,7 @@
   "about": "Про нас",
   "users": "Користувачі",
   "companies": "Компанії",
+  "stateDemo": "Demo Redux State",
   "langLabel": "Мова",
   "signIn": "Увійти"
 }
