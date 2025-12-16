@@ -1,48 +1,20 @@
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { Box, Typography, Breadcrumbs } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
-import LinkComponent from './LinkComponent';
+import CustomBreadcrumbs from './CustomBreadcrumbs';
 
-export type BreadcrumbItem = {
-  label: string;
-  to?: string;
-};
+import type { Crumb } from '@/router/breadcrumbs/types';
 
 type Props = {
   title: string;
   subtitle?: string;
-  breadcrumbs?: BreadcrumbItem[];
+  breadcrumbs?: Crumb[];
   actions?: React.ReactNode;
 };
 
 const PageHeader = ({ title, subtitle, breadcrumbs, actions }: Props) => {
   return (
     <Box sx={{ mb: 4 }}>
-      {breadcrumbs && (
-        <Breadcrumbs
-          separator={<NavigateNextIcon fontSize="small" />}
-          sx={{ mb: 2 }}
-        >
-          {breadcrumbs.map((crumb, i) =>
-            crumb.to ? (
-              <LinkComponent
-                key={i}
-                color="inherit"
-                to={crumb.to}
-              >
-                {crumb.label}
-              </LinkComponent>
-            ) : (
-              <Typography
-                key={i}
-                color="text.primary"
-              >
-                {crumb.label}
-              </Typography>
-            )
-          )}
-        </Breadcrumbs>
-      )}
+      {breadcrumbs && <CustomBreadcrumbs crumbs={breadcrumbs} />}
 
       <Box
         display="flex"

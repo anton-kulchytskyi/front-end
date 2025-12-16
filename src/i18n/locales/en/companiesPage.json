@@ -1,0 +1,30 @@
+{
+  "title": "Companies",
+  "subtitle": "Browse all companies in the system.",
+  "navigation": {
+    "backToCompanies": "Return to company list"
+  },
+  "actions": {
+    "createCompany": "Create New Company",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "filters": {
+    "searchPlaceholder": "Search by company name...",
+    "visibility": "Visibility"
+  },
+  "status": {
+    "all": "All",
+    "visible": "Visible",
+    "hidden": "Hidden"
+  },
+  "labels": {
+    "createdAt": "Created",
+    "updatedAt": "Updated",
+    "id": "ID",
+    "owner": "Owner"
+  },
+  "profile": {
+    "defaultTitle": "Loading company..."
+  }
+}

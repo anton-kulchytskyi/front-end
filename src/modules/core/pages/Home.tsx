@@ -1,11 +1,11 @@
 import { Box, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import ButtonLinkComponent from '@/components/ui/ButtonLinkComponent';
-import { useStrings } from '@/i18n/useStrings';
 import { ROUTES } from '@/router/routes';
 
 const Home = () => {
-  const { homePage } = useStrings();
+  const { t } = useTranslation('homePage');
 
   return (
     <Box
@@ -21,31 +21,31 @@ const Home = () => {
         gutterBottom
         color="primary.main"
       >
-        {homePage.welcome}
+        {t('welcome')}
       </Typography>
       <Typography
         variant="h5"
         color="text.secondary"
         sx={{ mb: 4 }}
       >
-        {homePage.subtitle}
+        {t('subtitle')}
       </Typography>
       <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center' }}>
         <ButtonLinkComponent
           variant="contained"
           color="primary"
           size="large"
-          to={ROUTES.ABOUT}
+          to={ROUTES.ABOUT.path}
         >
-          {homePage.learnMore}
+          {t('learnMore')}
         </ButtonLinkComponent>
         <ButtonLinkComponent
           variant="outlined"
           color="secondary"
           size="large"
-          to={ROUTES.USERS}
+          to={ROUTES.USERS.path}
         >
-          {homePage.viewUsers}
+          {t('cta')}
         </ButtonLinkComponent>
       </Box>
     </Box>

@@ -1,7 +1,7 @@
 import SearchOffIcon from '@mui/icons-material/SearchOff';
+import { useTranslation } from 'react-i18next';
 
 import EmptyState from '@/components/ui/EmptyState';
-import { useStrings } from '@/i18n/useStrings';
 
 type NoResultsFoundProps = {
   action?: {
@@ -11,13 +11,13 @@ type NoResultsFoundProps = {
 };
 
 const NoResultsFound = ({ action }: NoResultsFoundProps) => {
-  const { general } = useStrings();
+  const { t } = useTranslation();
 
   return (
     <EmptyState
       icon={<SearchOffIcon fontSize="inherit" />}
-      title={general.noResultsTitle}
-      description={general.noResultsDescription}
+      title={t('noResultsTitle')}
+      description={t('noResultsDescription')}
       action={action}
     />
   );

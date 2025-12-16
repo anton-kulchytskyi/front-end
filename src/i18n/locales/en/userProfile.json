@@ -1,0 +1,33 @@
+{
+  "breadcrumbs": {
+    "users": "Users"
+  },
+  "sections": {
+    "info": {
+      "title": "Profile Information",
+      "email": "Email",
+      "memberSince": "Member Since",
+      "lastUpdated": "Last Updated"
+    },
+    "stats": {
+      "title": "Statistics",
+      "quizzesCompleted": "Quizzes Completed",
+      "companiesJoined": "Companies Joined",
+      "averageScore": "Average Score",
+      "lastActivity": "Last Activity"
+    },
+    "activity": {
+      "title": "Recent Activity",
+      "emptyState": "No recent activity"
+    }
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "notFound": {
+    "title": "User Not Found",
+    "description": "The user you are looking for does not exist or has been removed.",
+    "action": "Back to Users"
+  }
+}

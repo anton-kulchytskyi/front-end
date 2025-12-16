@@ -1,27 +1,18 @@
-import type {
-  BreadcrumbConfig,
-  BreadcrumbEntityLabelGetter,
-  BreadcrumbLabelGetter,
-} from './types';
+import { ROUTES } from '../routes';
 
-export function createListBreadcrumbs(
-  label: BreadcrumbLabelGetter
-): BreadcrumbConfig {
-  return {
-    type: 'list',
-    label,
-  };
-}
+import type { Crumb } from './types';
 
-export function createProfileBreadcrumbs<T>(
-  listLabel: BreadcrumbLabelGetter,
-  listTo: string,
-  entityLabel: BreadcrumbEntityLabelGetter<T>
-): BreadcrumbConfig<T> {
-  return {
-    type: 'profile',
-    listLabel,
-    listTo,
-    entityLabel,
-  };
-}
+import type { AnyTFunction } from '@/i18n/types';
+
+type RouteKey = keyof typeof ROUTES;
+
+export const getNavigationItems = () => {
+  return Object.values(ROUTES).filter((route) => route.showInNav);
+};
+
+export const getRouteBreadcrumbs = (
+  routeKey: RouteKey,
+  t: AnyTFunction
+): Crumb[] => {
+  return ROUTES[routeKey].breadcrumbs(t);
+};

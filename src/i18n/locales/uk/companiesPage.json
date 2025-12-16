@@ -1,0 +1,30 @@
+{
+  "title": "Компанії",
+  "subtitle": "Перегляньте всі компанії в системі.",
+  "navigation": {
+    "backToCompanies": "Назад до списку компаній"
+  },
+  "actions": {
+    "createCompany": "Створити нову компанію",
+    "edit": "Редагувати",
+    "delete": "Видалити"
+  },
+  "filters": {
+    "searchPlaceholder": "Пошук за назвою компанії...",
+    "visibility": "Видимість"
+  },
+  "status": {
+    "all": "Усі",
+    "visible": "Видимі",
+    "hidden": "Приховані"
+  },
+  "labels": {
+    "createdAt": "Створено",
+    "updatedAt": "Оновлено",
+    "id": "ID",
+    "owner": "Власник"
+  },
+  "profile": {
+    "defaultTitle": "Завантаження компанії..."
+  }
+}

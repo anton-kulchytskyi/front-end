@@ -8,6 +8,7 @@ declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
     pageTitle: true;
     sectionTitle: true;
+    breadcrumb: true;
     nav: true;
     navActive: true;
     footer: true;
@@ -45,6 +46,7 @@ declare module '@mui/material/Card' {
 
 declare module '@mui/material/Link' {
   interface LinkPropsVariantOverrides {
+    breadcrumb: true;
     nav: true;
     navActive: true;
     footer: true;

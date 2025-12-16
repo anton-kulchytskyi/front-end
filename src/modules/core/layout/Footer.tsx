@@ -1,11 +1,11 @@
 import { Box, Container, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import LinkComponent from '@/components/ui/LinkComponent';
-import { useStrings } from '@/i18n/useStrings';
 import { ROUTES } from '@/router/routes';
 
 const Footer = () => {
-  const { footer } = useStrings();
+  const { t } = useTranslation('footer');
 
   return (
     <Box
@@ -24,13 +24,13 @@ const Footer = () => {
           color="text.secondary"
           align="center"
         >
-          © {new Date().getFullYear()} Meduzzen — {footer.copyright}.
-          {footer.separator}
+          © {new Date().getFullYear()} Meduzzen — {t('copyright')}.
+          {t('separator')}
           <LinkComponent
-            to={ROUTES.ABOUT}
+            to={ROUTES.ABOUT.path}
             sx={{ color: 'primary.main', textDecoration: 'none' }}
           >
-            {footer.aboutLink}
+            {t('aboutLink')}
           </LinkComponent>
         </Typography>
       </Container>

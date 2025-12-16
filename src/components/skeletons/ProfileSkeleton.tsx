@@ -1,4 +1,3 @@
-// src/components/skeletons/ProfileSkeleton.tsx
 import { Box, Skeleton, Stack } from '@mui/material';
 
 export const ProfileSkeleton = () => {

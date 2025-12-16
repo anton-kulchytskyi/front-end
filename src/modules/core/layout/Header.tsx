@@ -9,29 +9,25 @@ import {
   Typography,
   IconButton,
 } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 
 import LanguageSelector from './LanguageSelector';
 
 import ButtonLinkComponent from '@/components/ui/ButtonLinkComponent';
 import LinkComponent from '@/components/ui/LinkComponent';
-import { useStrings } from '@/i18n/useStrings';
+import { getNavigationItems } from '@/router/breadcrumbs/helpers';
 import { ROUTES } from '@/router/routes';
 import { useThemeMode } from '@/theme/context/ThemeContext';
 
 const Header = () => {
   const location = useLocation();
   const { mode, toggleColorMode } = useThemeMode();
-  const { nav } = useStrings();
+  const { t } = useTranslation('nav');
 
   const DESKTOP_BREAKPOINT = 'md';
 
-  const NAV_ITEMS = [
-    { path: ROUTES.HOME, label: nav.home },
-    { path: ROUTES.ABOUT, label: nav.about },
-    { path: ROUTES.USERS, label: nav.users },
-    { path: ROUTES.COMPANIES, label: nav.companies },
-  ];
+  const NAV_ITEMS = getNavigationItems();
 
   return (
     <AppBar
@@ -48,7 +44,7 @@ const Header = () => {
           <Typography
             variant="h6"
             component={LinkComponent}
-            to={ROUTES.HOME}
+            to={ROUTES.HOME.path}
             sx={{
               flexGrow: 1,
               fontWeight: 700,
@@ -77,7 +73,7 @@ const Header = () => {
                   to={item.path}
                   variant={isActive ? 'navActive' : 'nav'}
                 >
-                  {item.label}
+                  {t(item.translationKey)}
                 </LinkComponent>
               );
             })}
@@ -99,7 +95,7 @@ const Header = () => {
             to="/login"
             variant="contained"
           >
-            {nav.signIn}
+            {t('signIn')}
           </ButtonLinkComponent>
           <Box sx={{ display: { xs: 'flex', [DESKTOP_BREAKPOINT]: 'none' } }}>
             <IconButton

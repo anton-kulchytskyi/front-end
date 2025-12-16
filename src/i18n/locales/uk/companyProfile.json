@@ -1,0 +1,43 @@
+{
+  "breadcrumbs": {
+    "companies": "Компанії"
+  },
+  "sections": {
+    "info": {
+      "title": "Інформація про компанію",
+      "description": "Опис",
+      "owner": "Власник",
+      "visibility": "Видимість",
+      "createdAt": "Створено",
+      "lastUpdated": "Останнє оновлення"
+    },
+    "visibility": {
+      "visible": "Видима",
+      "hidden": "Прихована"
+    },
+    "stats": {
+      "title": "Статистика",
+      "totalMembers": "Кількість учасників",
+      "totalQuizzes": "Кількість квізів",
+      "activeMembers": "Активні учасники",
+      "avgCompletion": "Середній показник завершення"
+    },
+    "recentQuizzes": {
+      "title": "Останні квізи",
+      "questions_one": "питання",
+      "questions_few": "питання",
+      "questions_many": "питань",
+      "questions_other": "питання",
+      "completions_one": "завершення",
+      "completions_few": "завершення",
+      "completions_many": "завершень",
+      "completions_other": "завершення",
+      "emptyState": "Немає створених квізів"
+    }
+  },
+  "notFound": {
+    "title": "Компанію не знайдено",
+    "description": "Компанія, яку ви шукаєте, не існує або була видалена.",
+    "action": "Назад до списку компаній"
+  }
+}
