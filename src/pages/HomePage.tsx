@@ -7,7 +7,7 @@ export default function HomePage() {
         variant="h3"
         gutterBottom
       >
-        Quiz Management Platform
+        Quiz Management Platform test
       </Typography>
 
       <Typography

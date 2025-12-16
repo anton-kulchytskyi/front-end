@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - '5173:5173'
+    container_name: quiz-frontend
+    volumes:
+      - .:/app # live code reload
+      - /app/node_modules # prevent node_modules overwrite
+    environment:
+      - NODE_ENV=development
